@@ -10,6 +10,7 @@ matrix:
             - singularity pull docker://ewatercycle/walrus-grpc4bmi:v0.1.0
         script:
             - pytest
+            - sonar-scanner  -Dsonar.login=$SONAR_TOKEN
         cache:
          - pip
          - directories:
@@ -38,6 +39,9 @@ matrix:
                 sudo make install
                 cd ${TRAVIS_BUILD_DIR}
               fi
+        addons:
+          sonarcloud:
+            organization: ewatercycle
       - language: cpp
         before_install:
             - git submodule update --init
@@ -57,11 +61,16 @@ matrix:
                 fi
                 cd ${TRAVIS_BUILD_DIR}/cpp/bmi-c && mkdir -p build && cd build
                 cmake .. && sudo make install
+            - wget https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip && sudo unzip build-wrapper-linux-x86.zip -d /usr/local/bin
         script:
             - mkdir -p ${TRAVIS_BUILD_DIR}/cpp/build && cd ${TRAVIS_BUILD_DIR}/cpp/build
             - cmake ..
-            - make
+            - build-wrapper-linux-x86-64 --out-dir bw-output make
             - ctest -V
+            - cd ../..;sonar-scanner  -Dsonar.login=$SONAR_TOKEN
         cache:
             directories:
                 - /usr/local
+        addons:
+          sonarcloud:
+            organization: ewatercycle

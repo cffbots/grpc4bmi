@@ -1,5 +1,7 @@
 [![DOI](https://zenodo.org/badge/130237165.svg)](https://zenodo.org/badge/latestdoi/130237165)
 [![Build Status](https://travis-ci.org/eWaterCycle/grpc4bmi.svg?branch=master)](https://travis-ci.org/eWaterCycle/grpc4bmi)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=grpc4bmi&metric=alert_status)](https://sonarcloud.io/dashboard?id=grpc4bmi)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=grpc4bmi&metric=coverage)](https://sonarcloud.io/dashboard?id=grpc4bmi)
 
 # grpc4bmi
 
